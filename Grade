@@ -1,0 +1,92 @@
+ package maria;
+
+import javax.swing.JFrame;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Container;
+import javax.swing.JButton;
+ import javax.swing.JLabel;
+ import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+public class Grade extends JFrame implements ActionListener{
+   
+    private static final JLabel[] valores;
+    private static final JLabel[] imgs;
+    private JLabel loja;
+    private static final JTextField[] qtds;
+    private Container container;
+    private GridLayout grade1;
+    private JButton pedir;
+    private ImageIcon img;
+   
+    public Grade(){
+        super("Loja de Doces");
+        grade1 = new GridLayout(3,3,10,10);
+        container = getContentPane();
+        setLayout(grade1);
+        pedir = new JButton();
+        
+        loja = new JLabel("Loja de doces");
+        add(loja);
+        
+        
+        img= new ImageIcon(getClass().getResource("brig.jpg"));
+        imgs[0] = new JLabel(img);
+        add(imgs[0]);
+        
+        valores[0] = new JLabel("R$ 10,00");
+        add(valores[0]);
+        
+        qtds[0] = new JTextField("0", 5);
+        add(qtds[0]);
+        
+        img= new ImageIcon(getClass().getResource("cookie.jpg"));
+        imgs[1] = new JLabel(img);
+        add(imgs[1]);
+        
+        valores[1] = new JLabel("R$ 10,00");
+        add(valores[1]);
+        
+        qtds[1] = new JTextField("0", 5);
+        add(qtds[1]);
+        
+        img= new ImageIcon(getClass().getResource("pudim.jpg"));
+        imgs[2] = new JLabel(img);
+        add(imgs[2]);
+        
+        valores[2] = new JLabel("R$ 10,00");
+        add(valores[2]);
+        
+        qtds[2] = new JTextField("0", 5);
+        add(qtds[2]);
+        
+        pedir = new JButton("Finalizar pedido");
+        add(pedir);
+        
+        Handler han = new Handler(); 
+        qtds[0].addActionListener(han);
+        qtds[1].addActionListener(han);
+        qtds[2].addActionListener(han);
+        pedir.addActionListener(han);
+    }
+    private class Handler implements ActionListener{
+        
+        public void actionPerformed(ActionEvent event){
+            
+            
+            if(event.getSource() == pedir){
+                String aparece = "";
+                int qtd1 = Integer.parseInt(qtds[0].getText());
+                int qtd2 = Integer.parseInt(qtds[1].getText());
+                int qtd3 = Integer.parseInt(qtds[2].getText());
+
+                double total = qtd1*10.00 + qtd2*15.00 + qtd3*25.00;
+                aparece = String.format("O total da compra: %s", total);
+                JOptionPane.showMessageDialog(null, aparece);
+            }
+        }
+    }
+}
