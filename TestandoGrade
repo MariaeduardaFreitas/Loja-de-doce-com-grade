@@ -1,0 +1,14 @@
+package maria;
+
+
+import javax.swing.JFrame;
+
+public class TestandoGrade{
+
+    public static void main (String[] args){
+        Grade janelinhaGrade = new Grade();
+        janelinhaGrade.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janelinhaGrade.setSize(1920,1080);
+        janelinhaGrade.setVisible(true);
+    }
+}
